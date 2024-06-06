@@ -1,8 +1,7 @@
 # AetherGradle
-## Minecraft gradle plugin
-======
+> Minecraft gradle plugin
 
-[![License](https://img.shields.io/github/license/Aetherium-S-T/AetherGradle.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/Aetherium-S-T/AetherGradle?color=blue&logo=kotlin)
+[![License](https://img.shields.io/github/license/Aetherium-S-T/AetherGradle)](LICENSE) ![Language](https://img.shields.io/github/languages/top/Aetherium-S-T/AetherGradle?color=blue&logo=kotlin)
 
 // TBD
 If someone would like to add to this readme feel free to. 
