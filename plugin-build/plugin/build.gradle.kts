@@ -9,8 +9,6 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(gradleApi())
-
-    testImplementation(libs.junit)
 }
 
 java {
