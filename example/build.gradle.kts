@@ -1,10 +1,8 @@
+import club.aetherium.gradle.extension.RunMode.Companion.tweaker
+
 plugins {
     java
     id("club.aetherium.gradle")
-}
-
-minecraft {
-    minecraftVersion = "1.8.9"
 }
 
 repositories {
@@ -14,5 +12,10 @@ repositories {
 }
 
 dependencies {
-    add("mappings", "net.legacyfabric:yarn:1.8.9+build.mcp")
+    mappings("net.legacyfabric:yarn:1.8.9+build.mcp")
+}
+
+minecraft {
+    minecraftVersion = "1.8.9"
+    runMode = tweaker("club.aetherium.example.Tweaker")
 }

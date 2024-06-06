@@ -11,4 +11,5 @@ abstract class MinecraftExtension
         private val objects = project.objects
 
         val minecraftVersion: Property<String> = objects.property(String::class.java)
+        val runMode: Property<RunMode> = objects.property(RunMode::class.java)
     }

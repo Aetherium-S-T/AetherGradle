@@ -39,7 +39,7 @@ object Downloader {
         inputStream.close()
     }
 
-    private fun hash(file: File): String {
+    fun hash(file: File): String {
         Files.newInputStream(file.toPath()).use { `in` ->
             return DigestUtils.sha1Hex(`in`)
         }

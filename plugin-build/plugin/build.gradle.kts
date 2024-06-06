@@ -15,6 +15,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(gradleApi())
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.vineflower:vineflower:1.10.1")
     implementation(libs.gson)
     implementation(libs.tiny.remapper)

@@ -60,7 +60,7 @@ abstract class DownloadAndRemapJarTask : DefaultTask() {
             val characters = "=".repeat(neededBoxes)
             val whitespaces = " ".repeat(totalBoxes - neededBoxes)
 
-            project.logger.lifecycle(
+            print(
                 "[AetherGradle] Client: [$characters$whitespaces] (${it})\r"
             )
         }
