@@ -4,6 +4,7 @@ kotlin = "1.9.24"
 ktlintGradle = "12.1.1"
 pluginPublish = "1.2.1"
 versionCheck = "0.51.0"
+gson = "2.11.0"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
@@ -13,4 +14,6 @@ pluginPublish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish
 versionCheck = { id = "com.github.ben-manes.versions", version.ref = "versionCheck"}
 
 [libraries]
-junit = "junit:junit:4.13.2"
+gson = { module = "com.google.code.gson:gson", version.ref = "gson"}
+commons-codec = "commons-codec:commons-codec:1.17.0"
+tiny-remapper = "net.fabricmc:tiny-remapper:0.9.0"

@@ -5,10 +5,10 @@ import org.gradle.api.provider.Property
 import javax.inject.Inject
 
 @Suppress("UnnecessaryAbstractClass")
-abstract class TemplateExtension
+abstract class MinecraftExtension
     @Inject
     constructor(project: Project) {
         private val objects = project.objects
 
-        val version: Property<String> = objects.property(String::class.java)
+        val minecraftVersion: Property<String> = objects.property(String::class.java)
     }

@@ -6,9 +6,19 @@ plugins {
     alias(libs.plugins.pluginPublish)
 }
 
+repositories {
+    mavenCentral()
+    maven("https://maven.fabricmc.net")
+}
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(gradleApi())
+
+    implementation("org.vineflower:vineflower:1.10.1")
+    implementation(libs.gson)
+    implementation(libs.tiny.remapper)
+    implementation(libs.commons.codec)
 }
 
 java {
