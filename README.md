@@ -10,10 +10,12 @@ If someone would like to add to this readme feel free to.
 
 - Minecraft environment setup
 - Support for tweaker based clients
-- Mixins (TODO)
-- Mod loader support (TODO)
-- An mcp-like workspace where you can freely work with MCP code (TODO)
-- Assets (TODO)
+- Mixin Support
+
+## TODO 📌
+
+- Refmap generation
+- Exported JAR remapping
 
 ## Contributing 🤝
 
