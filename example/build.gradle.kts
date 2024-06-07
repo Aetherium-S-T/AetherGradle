@@ -19,9 +19,10 @@ dependencies {
 minecraft {
     minecraftVersion = "1.8.9"
     runMode = tweaker("club.aetherium.example.Tweaker")
-    gameExtensions = arrayOf(
-        mixin()
-    )
+    gameExtensions =
+        arrayOf(
+            mixin(),
+        )
 }
 
 java {

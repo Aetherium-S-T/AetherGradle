@@ -48,7 +48,7 @@ abstract class RunClientTask : JavaExec() {
 
         if(!runDirectory.exists()) runDirectory.mkdirs()
 
-        extension.gameExtensions.get().forEach { applyExtension(it) }
+        extension.gameExtensions.forEach { applyExtension(it) }
 
         super.exec()
     }

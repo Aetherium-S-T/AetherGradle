@@ -51,20 +51,22 @@ abstract class AetherGradle : Plugin<Project> {
             })
             it.mainClass.set(extension.runMode.get().mainClass)
         }
-
-        val jarTask = project.tasks.named("jar", Jar::class.java) {
-            it.finalizedBy(downloadAndRemapJarTask)
-        }.get()
-
+        val jarTask = project.tasks.named("jar", Jar::class.java).get()
         val remapJarTask = project.tasks.register("remapJar", RemapJarTask::class.java) {
             it.group = "AetherGradle"
 
             it.sourceNamespace.set("named")
             it.targetNamespace.set("official")
 
-            it.outputJar.set(jarTask.archiveFile.get().asFile)
             it.inputJar.set(jarTask.archiveFile.get().asFile)
+            it.outputJar.set(jarTask.archiveFile.get().asFile.parentFile.resolve(
+                jarTask.archiveFile.get().asFile.nameWithoutExtension + "-out.jar"
+            ))
         }
+
+        project.tasks.named("jar", Jar::class.java) {
+            it.finalizedBy(remapJarTask)
+        }.get()
 
         project.afterEvaluate {
             val mcManifest = MinecraftManifest.fromId(extension.minecraftVersion.get())
@@ -115,7 +117,7 @@ abstract class AetherGradle : Plugin<Project> {
             }
 
             // Extensions
-            val extensions = extension.gameExtensions.get()
+            val extensions = extension.gameExtensions
 
             extensions.forEach { applyExtension(it, project) }
         }
