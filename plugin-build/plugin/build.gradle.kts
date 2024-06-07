@@ -14,7 +14,9 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(gradleApi())
+    implementation(gradleKotlinDsl())
 
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.vineflower:vineflower:1.10.1")
     implementation(libs.gson)

@@ -1,3 +1,4 @@
+import club.aetherium.gradle.api.impl.MixinExtension.Companion.mixin
 import club.aetherium.gradle.extension.RunMode.Companion.tweaker
 
 plugins {
@@ -18,4 +19,15 @@ dependencies {
 minecraft {
     minecraftVersion = "1.8.9"
     runMode = tweaker("club.aetherium.example.Tweaker")
+    gameExtensions = arrayOf(
+        mixin()
+    )
+}
+
+java {
+    version = JavaVersion.VERSION_1_8
+}
+
+tasks.compileJava {
+    version = JavaVersion.VERSION_1_8
 }

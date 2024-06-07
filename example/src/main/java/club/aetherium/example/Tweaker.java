@@ -2,8 +2,12 @@ package club.aetherium.example;
 
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.spongepowered.asm.launch.MixinBootstrap;
+import org.spongepowered.asm.mixin.MixinEnvironment;
+import org.spongepowered.asm.mixin.Mixins;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +32,21 @@ public class Tweaker implements ITweaker {
             launchArguments.add("--gameDir");
             launchArguments.add(gameDir.getAbsolutePath());
         }
-        System.out.println("AcceptOptions");
     }
 
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
-        System.out.println("InjectIntoClassLoader");
+        MixinBootstrap.init();
+
+        MixinEnvironment environment = MixinEnvironment.getDefaultEnvironment();
+
+        environment.addConfiguration("example.mixins.json");
+
+        if (environment.getObfuscationContext() == null) {
+            environment.setObfuscationContext("notch");
+        }
+
+        environment.setSide(MixinEnvironment.Side.CLIENT);
     }
 
     @Override

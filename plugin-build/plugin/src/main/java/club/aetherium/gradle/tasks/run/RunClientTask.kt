@@ -1,7 +1,7 @@
 package club.aetherium.gradle.tasks.run
 
+import club.aetherium.gradle.api.GameExtension
 import club.aetherium.gradle.extension.MinecraftExtension
-import org.gradle.api.file.FileTree
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.TaskAction
 
@@ -33,14 +33,28 @@ abstract class RunClientTask : JavaExec() {
 
         val sourceSets = project.extensions.findByType(org.gradle.api.plugins.JavaPluginExtension::class.java)?.sourceSets
         val compiledJava = sourceSets?.flatMap { it.output.files }
+        val resources = sourceSets?.flatMap { it.resources }
+
+        resources?.forEach {
+            logger.lifecycle(it.absolutePath)
+        }
 
         classpath(
             project.configurations.getByName("runtimeClasspath"),
-            compiledJava
+            compiledJava,
+            resources?.map { it.parentFile },
+            project.objects.fileCollection()
         )
 
         if(!runDirectory.exists()) runDirectory.mkdirs()
 
+        extension.gameExtensions.get().forEach { applyExtension(it) }
+
         super.exec()
+    }
+
+    private fun applyExtension(ext: GameExtension) {
+        jvmArgs(ext.jvmArgs)
+        args(ext.programArgs)
     }
 }
