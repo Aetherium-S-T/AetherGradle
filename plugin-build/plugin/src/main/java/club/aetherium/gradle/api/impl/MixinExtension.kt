@@ -17,6 +17,10 @@ class MixinExtension : GameExtension() {
         "gson",
     )
 
+    override var annotationProcessors = listOf(
+        "net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5",
+    )
+
     override var repositories = listOf(
         "https://repo.spongepowered.org/repository/maven-public/",
         "https://maven.fabricmc.net/"

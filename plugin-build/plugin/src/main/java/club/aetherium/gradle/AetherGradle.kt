@@ -4,6 +4,7 @@ import club.aetherium.gradle.api.GameExtension
 import club.aetherium.gradle.extension.MinecraftExtension
 import club.aetherium.gradle.tasks.DownloadAndRemapJarTask
 import club.aetherium.gradle.tasks.GenerateSourcesTask
+import club.aetherium.gradle.tasks.remap.RemapJarTask
 import club.aetherium.gradle.tasks.run.DownloadAssetsTask
 import club.aetherium.gradle.tasks.run.RunClientTask
 import club.aetherium.gradle.utils.NativesTask
@@ -14,6 +15,7 @@ import groovy.lang.Closure
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.AbstractCompile
+import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.add
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.exclude
@@ -48,6 +50,20 @@ abstract class AetherGradle : Plugin<Project> {
                 !that.name.lowercase().contains("test")
             })
             it.mainClass.set(extension.runMode.get().mainClass)
+        }
+
+        val jarTask = project.tasks.named("jar", Jar::class.java) {
+            it.finalizedBy(downloadAndRemapJarTask)
+        }.get()
+
+        val remapJarTask = project.tasks.register("remapJar", RemapJarTask::class.java) {
+            it.group = "AetherGradle"
+
+            it.sourceNamespace.set("named")
+            it.targetNamespace.set("official")
+
+            it.outputJar.set(jarTask.archiveFile.get().asFile)
+            it.inputJar.set(jarTask.archiveFile.get().asFile)
         }
 
         project.afterEvaluate {

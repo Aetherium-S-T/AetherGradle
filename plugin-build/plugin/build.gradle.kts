@@ -43,7 +43,7 @@ gradlePlugin {
             version = property("VERSION").toString()
             description = property("DESCRIPTION").toString()
             displayName = property("DISPLAY_NAME").toString()
-            tags.set(listOf("plugin", "gradle", "sample", "template"))
+            tags.set(listOf("minecraft", "minecraft-plugin", "mc-dev", "minecraft-dev-env"))
         }
     }
 }
@@ -64,5 +64,16 @@ tasks.create("setupPluginUploadFromEnvironment") {
 
         System.setProperty("gradle.publish.key", key)
         System.setProperty("gradle.publish.secret", secret)
+    }
+}
+
+publishing {
+    repositories {
+        maven(properties["repsyUrl"].toString()) {
+            credentials {
+                username = properties["repsyUsername"].toString()
+                password = properties["repsyPassword"].toString()
+            }
+        }
     }
 }
